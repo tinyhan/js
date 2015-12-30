@@ -18,7 +18,6 @@
  * @link      https://github.com/overtrue
  * @link      http://overtrue.me
  */
-
 namespace EasyWeChat\Js;
 
 use EasyWeChat\Cache\Manager as Cache;
@@ -101,7 +100,7 @@ class Js extends AbstractAPI
 
         $base = [
                  'debug' => $debug,
-                 'beta' => $beta,
+                 'beta'  => $beta,
                 ];
         $config = array_merge($base, $signPackage, ['jsApiList' => $APIs]);
 
@@ -160,10 +159,10 @@ class Js extends AbstractAPI
         $ticket = $this->ticket();
 
         $sign = [
-                 'appId' => $this->appId,
-                 'nonceStr' => $nonce,
+                 'appId'     => $this->appId,
+                 'nonceStr'  => $nonce,
                  'timestamp' => $timestamp,
-                 'url' => $url,
+                 'url'       => $url,
                  'signature' => $this->getSignature($ticket, $nonce, $timestamp, $url),
                 ];
 
