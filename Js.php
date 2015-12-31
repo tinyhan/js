@@ -82,6 +82,9 @@ class Js extends AbstractAPI
         $this->secret = $accessToken->getSecret();
         $this->cache = $cache;
         $this->accessToken = $accessToken;
+        
+        $http  = new Http( $this->accessToken);
+        $this->setHttp( $http);
     }
 
     /**
@@ -133,7 +136,7 @@ class Js extends AbstractAPI
         return $this->getCache()->get(
             $key,
             function ($key) {
-                $result = $this->parseJSON($this->getHttp()->get($this->getAPI(self::API_TICKET)));
+                $result = $this->parseJSON('json', self::API_TICKET);
 
                 $this->getCache()->set($key, $result['ticket'], $result['expires_in'] - 500);
 
